@@ -1,0 +1,99 @@
+% HIER EDITIEREN: 
+% Typ der Arbeit (für Deckblatt und ehrenwörtliche Erklärung)
+% - bitte Zutreffendes auswählen
+%\newcommand{\typMeinerArbeit}{1. Projektarbeit} 
+%\newcommand{\typMeinerArbeit}{2. Projektarbeit} 
+%\newcommand{\typMeinerArbeit}{Seminararbeit} 
+%\newcommand{\typMeinerArbeit}{Projektarbeit 2} 
+\newcommand{\typMeinerArbeit}{2. Project work} 
+
+% Thema der Arbeit (für ehrenwörtliche Erklärung, ohne Umbrüche)
+% HIER EDITIEREN: 
+\newcommand{\themaMeinerArbeit}{Title of your work}
+
+% Vorname, Name der Autorin/des Autors (für Titelseite und Metadaten)
+% HIER EDITIEREN:
+\newcommand{\meinName}{Your Name}
+
+\thispagestyle{empty}
+
+\begin{spacing}{1}
+\begin{center}	
+~\vspace{0mm}
+
+% HIER EDITIEREN: Titel der Arbeit
+{\sffamily
+\LARGE  
+% \Large  % bei sehr langen Titeln ggf. etwas kleinere Schriftart wählen
+\textbf{\themaMeinerArbeit}
+
+\bigskip
+
+}
+
+
+\vspace{15mm}
+
+% Typ wird automatisch eingefügt (oben festlegen)
+{\Large \typMeinerArbeit}
+
+\vspace{1cm}
+
+% HIER ggf. EDITIEREN
+submitted on \today 
+
+\vspace{15mm}
+
+Faculty of economics
+\medskip
+
+Business informatics degree programme
+\medskip
+
+% HIER EDITIEREN: Kurs eintragen
+Course WI2019B 
+
+\vspace{10mm}
+
+by
+
+\vspace{10mm}
+
+% Vorname und Name wird automatisch eingefügt (oben festlegen) 
+{\large\textsc{\meinName}}
+
+\vspace{10mm}
+\end{center}
+
+\vfill
+
+% HIER EDITIEREN: Name des Unternehmens, Name der Betreuerin/des Betreuers
+\begin{tabular}{ll}
+Responsible person in the training centre: & DHBW Stuttgart: \\
+\hspace{0.4\linewidth} & \\
+Robert Bosch GmbH &  Peter Lustig\\
+Max Mustermann
+\\
+
+\end{tabular}
+
+
+\vspace{1cm}
+%(etwas Platz für die Unterschrift der Betreuerin/des Betreuers aus der Ausbildungsstätte)
+\end{spacing}
+
+% falls ein Vertraulichkeitsvermerk erforderlich ist,
+% die Kommentarzeichen in den nachfolgenden Zeilen entfernen:
+ 
+\begin{center}
+\small
+\textbf{Confidentiality notice}:
+The content of this work may not be made accessible to people outside of the testing process
+and the evaluation process neither as a whole nor as excerpts, unless an authorisation stating
+otherwise is presented by the training facility.
+\end{center}
+
+% Meta-Daten für PDF-Datei basierend auf obigen Angaben
+\hypersetup{pdftitle={\themaMeinerArbeit}}
+\hypersetup{pdfauthor={\meinName}}
+\hypersetup{pdfsubject={\typMeinerArbeit\ DHBW Stuttgart \the\year}}

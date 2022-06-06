@@ -1,0 +1,155 @@
+%%% Präambel %%%
+% hier sollten keine Änderungen erforderlich sein
+%
+\usepackage[utf8]{inputenc}   % Zeichencodierung UTF-8 für Eingabe-Dateien
+\usepackage[T1]{fontenc}      % Darstellung von Umlauten im PDF
+
+\usepackage{listings}         % für Einbindung von Code-Listings
+\lstset{numbers=left,numberstyle=\tiny,numbersep=5pt,texcl=true}
+\lstset{literate=             % erlaubt Sonderzeichen in Code-Listings 
+{Ö}{{\"O}}1
+{Ä}{{\"A}}1
+{Ü}{{\"U}}1
+{ß}{{\ss}}2
+{ü}{{\"u}}1
+{ä}{{\"a}}1
+{ö}{{\"o}}1
+{€}{{\euro}}1
+}
+
+\usepackage[
+  inner=35mm,outer=15mm,top=25mm,
+  bottom=20mm,foot=12mm,includefoot
+]{geometry}                 % Einstellungen für Ränder
+
+%\usepackage[ngerman]{babel} % Spracheinstellungen Deutsch
+%\usepackage[babel,german=quotes]{csquotes} % deutsche Anf.zeichen
+\usepackage[english]{babel} % Spracheinstellungen Englisch
+\usepackage[babel,english=british]{csquotes} % englische Anf.zeichen
+\usepackage{enumerate}      % anpassbare Nummerier./Aufz.
+\usepackage{enumitem}
+\usepackage{graphicx}       % Einbinden von Grafiken
+\usepackage[onehalfspacing]{setspace} % anderthalbzeilig
+
+\usepackage{blindtext}      % Textgenerierung für Testzwecke
+\usepackage{color}          % Verwendung von Farbe 
+\usepackage{float}
+\usepackage{acronym}        % für ein Abkürzungsverzeichnis
+\usepackage{comment}
+\usepackage[                % Biblatex
+  backend=biber,
+  bibstyle=_dhbw_authoryear,maxbibnames=99,
+  citestyle=authoryear,     
+  uniquename=true, useprefix=true,
+  bibencoding=utf8]{biblatex}
+\input{template/_dhbw_biblatex-config.tex} % mit DHBW-spezifischen Einstellungen
+
+% If you want to break on URL numbers
+\setcounter{biburlnumpenalty}{9000}
+% If you want to break on URL lower case letters
+\setcounter{biburllcpenalty}{9000}
+% If you want to break on URL UPPER CASE letters
+\setcounter{biburlucpenalty}{9000}
+
+%\usepackage{xurl}
+%\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\def\UrlBreaks{\do\/\do-}
+
+
+
+\def\hyphenateAndTtWholeString #1{\xHyphenate#1$\wholeString\unskip}
+
+\def\xHyphenate#1#2\wholeString {\if#1$%
+	\else\transform{#1}%
+	\takeTheRest#2\ofTheString\fi}
+
+\def\takeTheRest#1\ofTheString\fi
+{\fi \xHyphenate#1\wholeString}
+
+\def\transform#1{\url{#1}\hskip 0pt plus 1pt}
+
+% Define the \urlx command which works like \url, but with line brakes
+\def\urlx #1{\href{#1}{\hyphenateAndTtWholeString{#1}}}
+
+\usepackage{tocloft}        % für Verzeichnis der Anhänge
+
+\usepackage{pdfpages}
+\usepackage{gensymb}		% für \degree
+
+\newcounter{anhcnt}
+\setcounter{anhcnt}{0}
+\newlistof{anhang}{app}{}
+
+\newcommand{\anhang}[1]{%
+  \refstepcounter{anhcnt}
+  \setcounter{anhteilcnt}{0}
+  \section*{Appendix \theanhcnt: #1}
+  \addcontentsline{app}{section}{\protect\numberline{Appendix \theanhcnt}#1}\par
+}
+
+\newcounter{anhteilcnt}
+\setcounter{anhteilcnt}{0}
+
+\newcommand{\anhangteil}[1]{%
+	\refstepcounter{anhteilcnt}
+	\subsection*{Appendix~\arabic{anhcnt}/\arabic{anhteilcnt}: #1}
+	\addcontentsline{app}{subsection}{\protect\numberline{Appendix \theanhcnt/\arabic{anhteilcnt}}#1}\par
+}
+
+\renewcommand{\theanhteilcnt}{Appendix \theanhcnt/\arabic{anhteilcnt}}
+
+% vgl. S. 4 Paket-Beschreibung tocloft 	
+% Einrückungen für Anhangverzeichnis
+\makeatletter
+\newcommand{\abstaendeanhangverzeichnis}{
+\renewcommand*{\l@section}{\@dottedtocline{1}{0em}{5.5em}}
+\renewcommand*{\l@subsection}{\@dottedtocline{2}{2.3em}{6.5em}}
+}
+\makeatother
+
+% Abbildungs- und Tabellenverzeichnis
+% Bezeichnungen
+%\renewcaptionname{ngerman}{\figurename}{Abb.}
+%\renewcaptionname{ngerman}{\tablename}{Tab.}
+%\addto\captionsenglish{english}{\figurename}{Fig.}
+%\addto\captionsenglish{english}{\tablename}{Tab.}
+
+% Einrückungen
+\makeatletter
+\renewcommand*{\l@figure}{\@dottedtocline{1}{0em}{2.3em}}
+\renewcommand*{\l@table}{\@dottedtocline{1}{0em}{2.3em}}
+\makeatother
+
+
+\usepackage{chngcntr}                % fortlaufende Zähler für Fußnoten, Abbildungen und Tabellen
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{footnote}{chapter}
+
+\usepackage[automark]{scrlayer-scrpage} 
+\input{template/_dhbw_kopfzeilen.tex}		 % für schöne Kopfzeilen 
+
+\usepackage{textcomp}            % erlaubt EUR-Zeichen in Eingabedatei
+\usepackage{eurosym}             % offizielles EUR-Symbol in Ausgabe
+\renewcommand{\texteuro}{\euro}  % ACHTUNG: nach hyperref aufrufen!
+
+\usepackage{scrhack}             % stellt Kompatibilität zw. KOMA-Script
+                                 % (scrreprt) und anderen Paketen her
+                                 
+% Anpassung der Abstände bei Kapitelüberschriften
+% (betrifft auch Inhalts-, Abbildungs- und Tabellenverzeichnis)
+\renewcommand*\chapterheadstartvskip{\vspace*{-\topskip}}
+\newcommand{\myBeforeTitleSkip}{1mm}
+\newcommand{\myAfterTitleSkip}{10mm}
+\setlength\cftbeforetoctitleskip{\myBeforeTitleSkip}
+\setlength\cftbeforeloftitleskip{\myBeforeTitleSkip}
+\setlength\cftbeforelottitleskip{\myBeforeTitleSkip}
+
+\setlength\cftaftertoctitleskip{\myAfterTitleSkip}
+\setlength\cftafterloftitleskip{\myAfterTitleSkip}
+\setlength\cftafterlottitleskip{\myAfterTitleSkip}  
+
+%\DefineBibliographyStrings{english}{andothers={{}}}   
+                                                    
+%%% Ende der Präambel %%%
